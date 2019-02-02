@@ -1,0 +1,94 @@
+// header.scss
+
+header {
+    background: #E76642;
+    border-radius:6px 6px 0 0;
+    transform-style: preserve-3d;
+
+    .calendar-image {
+        height: 250px;
+        border-radius:6px 6px 0 0;
+        background-image: url("https://images.pexels.com/photos/636243/pexels-photo-636243.jpeg?auto=compress&cs=tinysrgb&h=650&w=940%201x,%20https://images.pexels.com/photos/636243/pexels-photo-636243.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940%202x");
+        background-size: 100% 100%;
+
+        @media only screen and (max-width: $screen-md) {
+            height: 200px;
+        }
+    }
+
+    .date-day-month {
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+
+        &.date{
+            font-size:50px;
+            color:#ECECE7;
+            font-weight:500;
+            float: left;
+            width: 35%;
+            text-align: right;
+        }
+
+        &.day{
+            padding-top: 21px;
+            font-size:14px;
+            color:#232227;
+            font-weight:400;
+        }
+
+        &.month{
+            font-size:10px;
+            color:#232227;
+            font-weight:200;
+        }
+    }
+}
+
+.day-names {
+    background-color:#ddd;
+    font-size:12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:700;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    > div {
+        color: #E76642;
+    }
+}
+
+// week-section.scss
+
+section {
+    background-color: #232227;
+
+    .week-row {
+        &:first-child {
+            padding-top: 20px;
+        }
+
+        &:last-child {
+            padding-bottom: 20px;
+        }
+    }
+
+    .cell {
+        height: 4em;
+        text-align: center;
+        cursor: pointer;
+
+        .date {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-size: 36px;
+            color:#ECECE7;
+            font-weight: 300;
+
+            &:hover {
+                color:#E76642;
+                transition:.3s ease;
+            }
+        }
+    }
+}
+

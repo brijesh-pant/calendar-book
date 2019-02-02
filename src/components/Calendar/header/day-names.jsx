@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const daysList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+export default class DayNames extends Component {
+	constructor() {
+		super();
+		this.state = {
+			daysList: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+		};
+	}
 
-const DayNames = () => (
-	<div className="row">
-		{daysList.map((dayName, index) => (
-			<div key={index} className="col col-center">
-				{dayName}
+	render() {
+		const {
+			state: { daysList }
+		} = this;
+
+		return (
+			<div className="row day-names">
+				{daysList.map((dayName, index) => (
+					<div key={index} className="col col-center">
+						{dayName}
+					</div>
+				))}
 			</div>
-		))}
-	</div>
-);
-
-export default DayNames;
+		);
+	}
+}

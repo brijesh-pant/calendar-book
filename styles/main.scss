@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -7,14 +12,24 @@ body {
   font-weight: 300;
   line-height: 1.5;
   color: $text-color;
-  background: $bg-color;
+  background-color: $bg-color;
+  background-image:url(https://static.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  height:100vh;
 }
 
 .wrapper {
-  width: 80%;
-  margin-top: 10%;
+  width: 50%;
+  margin-top: 2%;
   margin-left: auto;
   margin-right: auto;
+
+  @media only screen and (max-width: $screen-md) {
+    width: 100%;
+    margin-top: 0;
+  }
 }
 
 /* GRID */
@@ -51,9 +66,8 @@ body {
     justify-content: flex-end;
     text-align: right;
   }
-}
 
-.small-img {
-  display: block;
-  width: 25%;
+  @media only screen and (max-width: $screen-md) {
+    flex-basis: auto;
+  }
 }

@@ -6,6 +6,7 @@ header {
     transform-style: preserve-3d;
 
     .calendar-image {
+        position: relative;
         height: 225px;
         border-radius:6px 6px 0 0;
         background-image: url("https://images.pexels.com/photos/636243/pexels-photo-636243.jpeg?auto=compress&cs=tinysrgb&h=650&w=940%201x,%20https://images.pexels.com/photos/636243/pexels-photo-636243.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940%202x");
@@ -13,6 +14,27 @@ header {
 
         @media only screen and (max-width: $screen-md) {
             height: calc(100vh - 441px);
+        }
+
+        .year-month-dropdown {
+            position: absolute;
+            top: -35px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+
+            .month-dd, .year-dd {
+                text-align: center;
+                background: $white-text-color;
+            }
+
+            .month-dd {
+                padding-right: 1px;
+            }
+
+            .year-dd {
+                padding-left: 1px;
+            }
         }
     }
 
@@ -51,6 +73,51 @@ header {
             font-size:10px;
             color:$baltic-sea-color;
             font-weight:200;
+        }
+    }
+}
+
+.dropdown {
+    padding-top: 2px;
+    background: $white-text-color;
+
+    .react-select-container {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+    }
+
+    .react-select__control {
+        position: relative;
+        border: 1px solid $baltic-sea-color;
+        border-radius: 0;
+        background-color: $baltic-sea-color;
+        color: #fefefe;
+
+        .react-select__single-value {
+            color: $white-text-color;
+        }
+
+        .react-select__indicators {
+            cursor: pointer;
+        }
+    }
+
+    .react-select__menu {
+        margin-top: 0;
+        border-radius: 0;
+        background-color: $white-text-color;
+
+        .react-select__option {
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .react-select__option--is-selected {
+            background-color: $orange-bg-color;
+        }
+
+        .react-select__option--is-focused {
+            background-color: rgba($orange-bg-color, 0.5);
         }
     }
 }

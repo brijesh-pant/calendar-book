@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
+import YearMonthDropdown from './year-month-dropdown';
+
 import DayNames from './day-names';
 
 import ArrowLeftIcon from '../../../images/arrow_left.svg';
@@ -9,7 +11,9 @@ import ArrowRightIcon from '../../../images/arrow_right.svg';
 
 const Header = ({ currentMonth, goToPreviousMonthFn, goToNextMonthFn }) => (
 	<header>
-		<div className="calendar-image" />
+		<div className="calendar-image">
+			<YearMonthDropdown currentMonth={currentMonth} />
+		</div>
 		<div className="row row-middle">
 			<div className="col col-start" onClick={goToPreviousMonthFn}>
 				<ArrowLeftIcon className="arrow-left-icon" />

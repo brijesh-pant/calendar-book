@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { withRouter } from 'react-router';
+import qs from 'query-string';
 
 import Header from './header';
 import WeekSection from './week-section';
 
-export default class Calendar extends Component {
+import { _getSelectedMonthObj, _getSelectedYearObj } from '../../util';
+
+class Calendar extends Component {
 	constructor() {
 		super();
 		const currentMonth = moment();
@@ -17,12 +21,58 @@ export default class Calendar extends Component {
 	}
 
 	componentDidMount() {
+		const { props, _initMonthAndYear } = this;
+		_initMonthAndYear(props);
+
 		setTimeout(() => {
 			this.setState({
 				loader: false
 			});
 		}, 1000);
 	}
+
+	componentWillReceiveProps(nextProps) {
+		const {
+			props: {
+				location: { search: prevSearch }
+			},
+			_initMonthAndYear
+		} = this;
+		const {
+			location: { search: nextSearch }
+		} = nextProps;
+
+		const { month: prevMonth = '', year: prevYear = '' } = qs.parse(prevSearch);
+		const { month: nextMonth = '', year: nextYear = '' } = qs.parse(nextSearch);
+		if (prevMonth !== nextMonth || prevYear !== nextYear) {
+			_initMonthAndYear(nextProps);
+		}
+	}
+
+	_initMonthAndYear = props => {
+		const {
+			location: { search }
+		} = props;
+		const { currentMonth } = this.state;
+		let { month = '', year = '' } = qs.parse(search);
+
+		if (!month || month.length === 0) {
+			month = currentMonth.format('M');
+		}
+		month = month - currentMonth.format('M');
+		if (!year || year.length === 0) {
+			year = currentMonth.format('YYYY');
+		}
+
+		const currentMonthUpdated = currentMonth
+			.clone()
+			.add(month, 'months')
+			.year(year);
+
+		this.setState({
+			currentMonth: currentMonthUpdated
+		});
+	};
 
 	_goToPreviousMonth = () => {
 		this.setState(prevState => ({
@@ -64,3 +114,5 @@ export default class Calendar extends Component {
 		);
 	}
 }
+
+export default withRouter(Calendar);

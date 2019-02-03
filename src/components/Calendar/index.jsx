@@ -74,16 +74,28 @@ class Calendar extends Component {
 		});
 	};
 
+	_goToPreviousOrNextMonth = monthAndYear => {
+		const {
+			props: {
+				history: { push: pushFn }
+			}
+		} = this;
+		const month = monthAndYear.format('M');
+		const year = monthAndYear.format('YYYY');
+		const to = { pathname: '/', search: `?month=${month}&year=${year}` };
+		pushFn(to);
+	};
+
 	_goToPreviousMonth = () => {
-		this.setState(prevState => ({
-			currentMonth: prevState.currentMonth.subtract(1, 'month')
-		}));
+		const { currentMonth } = this.state;
+		const prevMonthAndYear = currentMonth.clone().subtract(1, 'month');
+		this._goToPreviousOrNextMonth(prevMonthAndYear);
 	};
 
 	_goToNextMonth = () => {
-		this.setState(prevState => ({
-			currentMonth: prevState.currentMonth.add(1, 'month')
-		}));
+		const { currentMonth } = this.state;
+		const nextMonthAndYear = currentMonth.clone().add(1, 'month');
+		this._goToPreviousOrNextMonth(nextMonthAndYear);
 	};
 
 	_onChangeDate = day => () => {

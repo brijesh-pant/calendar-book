@@ -23,6 +23,10 @@ header {
             width: 100%;
             height: 40px;
 
+            @media only screen and (max-width: $screen-md) {
+                top: 0;
+            }
+
             .month-dd, .year-dd {
                 text-align: center;
                 background: $white-text-color;

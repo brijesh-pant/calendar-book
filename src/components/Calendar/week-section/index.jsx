@@ -12,7 +12,6 @@ const WeekSection = props => {
 	let date = currentMonth
 		.clone()
 		.startOf('month')
-		.add('w' - 1)
 		.day('Sunday');
 	let count = 0;
 	let monthIndex = date.month();

@@ -10,9 +10,18 @@ export default class Calendar extends Component {
 		const currentMonth = moment();
 		const currentDate = moment().startOf('day');
 		this.state = {
+			loader: true,
 			currentMonth,
 			currentDate
 		};
+	}
+
+	componentDidMount() {
+		setTimeout(() => {
+			this.setState({
+				loader: false
+			});
+		}, 1000);
 	}
 
 	_goToPreviousMonth = () => {
@@ -36,11 +45,15 @@ export default class Calendar extends Component {
 
 	render() {
 		const {
-			state: { currentMonth, currentDate },
+			state: { currentMonth, currentDate, loader },
 			_goToPreviousMonth,
 			_goToNextMonth,
 			_onChangeDate
 		} = this;
+
+		if (loader) {
+			return null;
+		}
 
 		return (
 			<div className="wrapper">

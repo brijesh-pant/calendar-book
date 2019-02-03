@@ -26,3 +26,10 @@ export const _getSelectedMonthObj = month => {
 export const _getSelectedYearObj = year => {
 	return yearList.find(({ value }) => value === parseInt(year)) || '';
 };
+
+export const _validateUrl = (month, year) => {
+	// https://stackoverflow.com/questions/17547710/javascript-regex-validate-years-in-range
+	const isValidYear = /^(19[7-9]\d|20[0-4]\d|2050)$/.test(year);
+	const isValidMonth = /^[0-9][0-1]?$|^12$/.test(Math.abs(month));
+	return !(isValidYear && isValidMonth);
+};

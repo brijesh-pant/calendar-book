@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { withRouter } from 'react-router';
+import { withRouter, Redirect } from 'react-router';
 import qs from 'query-string';
 
 import Header from './header';
 import WeekSection from './week-section';
 
-import { _getSelectedMonthObj, _getSelectedYearObj } from '../../util';
+import { _getSelectedMonthObj, _getSelectedYearObj, _validateUrl } from '../../util';
 
 class Calendar extends Component {
 	constructor() {
@@ -62,6 +62,11 @@ class Calendar extends Component {
 		month = month - currentMonth.format('M');
 		if (!year || year.length === 0) {
 			year = currentMonth.format('YYYY');
+		}
+
+		const isInvalidUrl = _validateUrl(month, year);
+		if (isInvalidUrl) {
+			window.location.href = '/';
 		}
 
 		const currentMonthUpdated = currentMonth

@@ -1,30 +1,28 @@
-
 <p align="center">
-    <h3 align="center">Simple React Webpack Babel Starter Kit<br></h3>
+    <h3 align="center">Calendar book<br></h3>
 </p>
 
-[![CircleCI](https://circleci.com/gh/ReactJSResources/react-webpack-babel/tree/master.svg?style=svg)](https://circleci.com/gh/ReactJSResources/react-webpack-babel/tree/master)
-
-[![Dependency Status](https://img.shields.io/david/ReactJSResources/react-webpack-babel.svg)](https://david-dm.org/dylang/npm-check)
-
-Tired of complicated starters with 200MB of dependencies which are hard to understand and modify? This is for you!
-
-### What were using
+### What tech stack is used
 
 * React 16
 * Webpack 3
 * React Router 4
-* SASS
+* SCSS
 * Babel Cli
 * Hot Module Reloading
-* Jest 21 
-* Enzyme 3 for testing
 
 ### Features
 
-* Simple src/index.jsx and src/index.css (local module css).
+* shows overflow dates at the start and end of the month, if applicable
+* month dropdown for changing the month
+* year dropdown for changing the year
+* previous + next arrows for moving between months
+* default to the current month
+* After changing the month and refreshing the page, the same month is shown (updates the URL on moving between months)
+* handle url validation for month and year parameters, redirects to index page if url is invalid
+
+* Simple src/index.jsx.
 * Webpack configuration for development (with hot reloading) and production (with minification).
-* CSS module loading, so you can include your css by ```import styles from './path/to.css';```.
 * Both js(x) and css hot loaded during development.
 * [Webpack Dashboard Plugin](https://github.com/FormidableLabs/webpack-dashboard) on dev server.
 
@@ -34,7 +32,7 @@ Tired of complicated starters with 200MB of dependencies which are hard to under
 * Fork and clone the project:
 
 ```
-git clone https://github.com/ReactJSResources/react-webpack-babel.git
+git clone https://github.com/brijesh-pant/calendar-book.git
 ```
 
 * Then install the dependencies:
@@ -57,60 +55,10 @@ npm run dev
 
 Open the web browser to `http://localhost:8888/`
 
-### To test
-To run unit tests:
-
-```
-npm test
-```
-
-Tests come bundled with:
-
-* Jest
-* Enzyme
-* React Test Utils
-* React Test Renderer
-
 ### To build the production package
 
 ```
 npm run build
-```
-
-### Running build locally
-
-If you are using Mac/Linux simply run the following command inside public directory:
-
-```
-python -m SimpleHTTPServer 8000
-```
-
-### Nginx Config
-
-Here is an example Nginx config:
-
-```
-server {
-	# ... root and other options
-
-	gzip on;
-	gzip_http_version 1.1;
-	gzip_types text/plain text/css text/xml application/javascript image/svg+xml;
-
-	location / {
-		try_files $uri $uri/ /index.html;
-	}
-
-	location ~ \.html?$ {
-		expires 1d;
-	}
-
-	location ~ \.(svg|ttf|js|css|svgz|eot|otf|woff|jpg|jpeg|gif|png|ico)$ {
-		access_log off;
-		log_not_found off;
-		expires max;
-	}
-}
 ```
 
 ### Eslint
@@ -121,10 +69,6 @@ To run linting, run:
 ```
 npm run lint
 ```
-
-### Notes on importing css styles
-* styles having /src/ in their absolute path considered part of the application and exported as local css modules.
-* other styles considered global styles used by components and included in the css bundle directly.
 
 ### Contribute
 Please contribute to the project if you know how to make it better, including this README :)
